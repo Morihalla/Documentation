@@ -1,0 +1,64 @@
+Collections
+(add, remove, creal, contains, iterator, size, forEach, stream)
+
+1. List
+-Geordend
+-Duplicaten mogelijk
+-Indexwaarde
+(implements Collection-methods + add, set, get, remove)
+----------------------------------------
+1.1. ArrayList
+-Snelle willekeurige toegang via index
+(ListMethods)
+----------------------------------------
+1.2. LinkedList
+-Snelle toevoeging, verwijdering etc... via aankoppelen van voor- en achterliggende elementen..
+(ListMethods)
+-----------------------------------------------------------------------
+
+2. Set
+-Unieke objecten
+-Geen index
+(Implements Collection-methods)
+----------------------
+2.1. HashSet
+-Ongeordent
+-Ongesorteerd
+-Snel random toegang
+(Implements Collection-methods)
+-----------------------
+2.2. LinkedHashSet
+-Geordent
+-Ongesorteerd
+-Snel random toegang
+(Implements Collection-methods)
+---------------------
+2.3. SortedSet
+-Geordent
+-Gesorteerd
+(first,last)
+-----------------------
+2.3.bis NavigableSet
+(ceiling, floor, higher, lower)
+-------------------------
+2.3.bis.bis TreeSet
+-Boomstructuur
+(Implements Collection-methods)
+--------------------------
+
+3. Queue
+-Geordent
+(Implements Collection-methods + offer, peek, element, poll, remove)
+--------------------------------------
+3.1. PriorityQueue
+(Queuemethods)
+------------------------
+3.2. Deque
+-Kop- en Staart-toegang
+(Queuemethods + offerFirst/addFirst, peekFirst/getFirst, pollFirst/removeFirst, offerLast/addLast, peekLast/getLast, pollLast/removeLast)
+-------------------------------------------------------------
+3.2.1. LinkedList (zie 1.2.)
+(Listmethods + Dequemethods)
+-------------------------------
+3.2.2. ArrayDeque
+(Dequemethods)
