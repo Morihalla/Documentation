@@ -1,5 +1,5 @@
 Collections
-(add, remove, creal, contains, iterator, size, forEach, stream)
+(add, remove, clear, contains, iterator, size, forEach, stream)
 
 1. List
 -Geordend
