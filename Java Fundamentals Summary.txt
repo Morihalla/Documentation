@@ -602,6 +602,387 @@ public class ExceptionName extends ExistingException {
 
 18. GENERICS
 
+public class ClassName <E1,E2> {
+	private E1 name;
+	private E2 secondName;
+
+public ClassName (E1 name, E2 secondName){
+	this.name = name;
+	this.secondName = secondName;
+	}
+}
+
+-To explicitely use a certain kind of type <E> can be replaced by
+-><E extends ...>
+-(... ex. Number, ...)-
+
+-if the generic to be used is not known 
+you can use the wildcar (= ?) with a height-limit
+-> example: <? extends Number>
+
+-or to exlude subclasses
+-> <? super Number>
+
+-for arrays alwas use wildcard
+
+
+19. LAMBDA-EXPRESSIONS
+
+19.1. FUNCTIONAL INTERFACES
+
+-Can only have one abstract method
+
+@FunctionalInterface
+public interface Name {
+	...;
+}
+
+19.2. BASIC LAMBDA-EXPRESSIONS
+defining lambda-expression (example):
+object.methodImplementingFI ((String s) -> s.contains("e"));
+
+The 3 parts of lambda-expressions:
+1) params: (String s) OR (var s) OR (s) OR s
+2) arrow: ->
+3) body: expression or codeblock that implements the functional method
+
+19.3. METHOD-REFERENCES
+
+qualifier::identifier
+
+for static methods:
+-> className::staticMethodName
+
+for methods of bounded objects:
+-> objectName::methodName
+
+for methods of unbounded objects:
+-> ParameterType::methodName
+
+for constructor-references:
+-> ClassName::new
+
+19.4. BASIC FUNCTIONAL INTERFACES
+
+1) Predicate<T>
+	abstract method:
+	public boolean test (T t);
+	
+	default-methods:
+	and(Predicate <? super T> other)
+	or(Predicate <? super T> other)
+	negate()
+
+2)Function<T,R>
+	abstract method:
+	public R apply (T t);
+
+	default)methods:
+	andThen (Function <? super R, ? extends V> after)
+	compose (Function <? super V, ? extends T> before)
+
+3)Consumer<T>
+	abstract method:
+	public void accept (T t);
+
+	default method:
+	andThen (Consumer<? super T> after)
+
+
+20. STREAMING
+
+example:
+int [] numbers = {1,2,3,4,5,6};
+
+Stream
+
+Enter source:
+.of(numbers)
+
+Iterator:
+.forEach();
+
+20.1. SOURCES
+
+sorts of Streams:
+1)Stream<T>: generic objects
+2)IntStream: stream of integers
+3)LongStream: stream of longs
+4)DoubleStream: stream of doubles
+
+sources of Streams:
+1)collection of elements
+2)generator
+3)I/O-channel
+
+Generate Stream:
+.generate()
+	abstract method:
+	public T get();
+
+not-generic objects:
+	methods:
+	.range()
+	.rangeClosed()
+	.iterate(initNumber,functionalMethod)
+		functionalMethod:
+		public int applyAsInt (int operand);
+
+20.2. OPERATIONS
+
+20.2.1. INTERMEDIATE OPERATIONS
+
+1) Filter: new stream with elements of given requirements
+2) Conversion: new stream with converted elements
+3) Sorting: new stream with sorted elements of first stream
+
+20.2.1.1. FILTERS
+
+.filter(lambda-expression)
+
+-can contain multiple filters
+
+pre-existing filters:
+.distinct() => removes all duplicates
+.limit() => limits the number of elements to keep
+.skip() => skips certain elements
+
+20.2.1.2. CONVERSION
+
+method-examples:
+IntStream mapToInt (ToIntFunction<? super T> mapper)
+LongStream mapToLong (ToLongFunction<? super T> mapper)
+DoubleStream mapToDouble (ToDoubleFunction<? super T> mapper)
+<R> Stream<R> map (Function<? super T,? extends R> mapper)
+
+use-examples:
+.mapToInt(lambda-expression)
+.map(lambda-expression)
+
+20.2.1.3. SORTING
+
+.sorted()
+(uses automatic generated sorting algorithm from Comparator)
+
+20.2.2. END-OPERATIONS
+
+1) Nothing (consuming)
+2) New data (reducing)
+3) New collection (collecting)
+
+20.2.2.1. CONSUMING OPERATIONS
+
+.forEach (Consumer<? super T> action)
+
+example:
+Stream.of(input)
+	.forEach(System.out::println);
+
+20.2.2.2. REDUCING OPERATIONS
+
+.sum() - example:
+int sum = IntStream.rangeClosed(begin,end)
+			.sum();
+
+.max() - example:
+OptionalInt max = IntStream.rangeClosed(begin,end)
+				.max();
+
+Usercreated reduce-operation:
+.reduce(begin,(acc,el)->acc//doSomething//el);
+
+->begin = optional beginValue
+->acc = accumulationValue
+->el = elementValue
+->doSomething = operation to do
+
+20.2.2.3. COLLECTING OPERATIONS
+
+.collect()
+
+Array-example:
+.toArray();
+
+
+21. COLLECTIONS
+
+21.1. COLLECTIONS FRAMEWORK
+
+possibilities:
+1) Adding an object at a collection
+2) Removing an object from a collection
+3) Checking if an object is present in a collection
+4) Request an object from a collection
+5) Iterate a collection
+
+21.2. COLLECTIONS AND IMPLEMENTATIONS
+
+basic methods:
+boolean add (E e) => add element to collection
+boolean remove (Object o) => remove element from collection
+void clear () => removes all elements from a collection
+boolean contains (Object o) => checks if an element is present
+Iterator<E> iterator () => iterates the collection
+int size() => gives the number of elements in a collection
+forEach() => iterates collection and uses functional method
+stream() => gives a stream of all elements in a collection
+
+Iterator-methods basics:
+.hasnext() => show if there is a next element
+.next() => gives the next element
+
+21.2.1. LIST
+
+List is a subclass of Collection thus inherites all methods
+
+-A list is ordened
+-Duplicates are possible
+-IndexValue
+
+basic methods:
+-> Collection-methods
+
++
+
+void add (int index, E e) => adds element on given position 
+				(rest is shifted)
+void set (int index, E e) => replaces element on given position
+E get (int index) => gives element on given position
+E remove (int index) => removes element on given position
+				(rest is shifted)
+
+21.2.1.1. ARRAYLIST
+
+-Quick random acces by index
+
+methods: see List-methods
+
+21.2.1.2. LINKEDLIST
+
+-Quick adding, removing etc...
+-Each element is linked before and after
+
+methods: 
+List-methods (21.2.1.) 
++ 
+Duque-methods (21.2.3.2.)
+
+21.2.2. SET
+
+-No duplicates
+-No index
+
+methods: see Collection-methods
+
+21.2.2.1. HASHSET
+
+-Not ordened
+-Not sorted
+-Quick random acces
+
+methods: see Collection-methods
+
+21.2.2.2. LINKEDHASHSET
+
+-Ordened
+-Not sorted
+-Quick random acces
+
+methods: see Collection-methods
+
+21.2.2.3. SORTEDSET
+
+-Ordened
+-Sorted
+
+methods:
+-> Set-methods
+
++
+
+E  first() => gives first element
+E last() => gives last element
+
+21.2.2.3.BIS. NAVIGABLESET
+
+methods:
+-> SortedSet-methods
+
++
+
+E ceiling() => gives element that is bigger or equal 
+		to a given element
+E floor() => gives element that is smaller or equal
+		to a given element
+E higher() => gives next element bigger than given element
+E lower() => gives next element lower than given element
+
+21.2.2.3.BIS.BIS. TREESET
+
+-Treestructured
+
+methods: See Collection-methods
+
+21.2.3. QUEUE
+
+-Ordened
+
+methods:
+-> Collection-methods
+
++
+
+offer (E e) => adds element to a queue
+E peek()	=> gives next element but doesn't remove it
+		=> gives null when queue is empty
+E element() 	=> gives next element but doesn't remove it
+		=> throws exception when queue is empty
+E poll()	=> gives next element and removes it
+		=> gives null when queue is empty
+E remove()	=> gives next element and removes it
+		=> throws exception when queue is empty
+
+21.2.3.1. PRIORITYQUE
+
+methods: see Queuemethods
+
+21.2.3.2. DEQUE
+
+-Head- and tail-access
+
+methods:
+-> Queuemethods
+
+offerfirst (E e) - addFirst (E e)
+=> adds element at head
+E peekFirst() - E getFirst()
+=> gives next element at head but doesn't remove it
+E pollFirst() - E removeFirst()
+=> gives next element at head and removes it
+offerLast (E e) - addLast (E e)
+=> adds element at tail
+E peekLast() - E getLast()
+=> gives next element at tail but doesn't remove it
+E pollLast() - E removeLast()
+=> gives next element at tail and removes it
+
+21.2.3.2.1. LINKEDLIST
+(see 21.2.1.2.)
+
+21.2.3.2.2. ARRAYDEQUE
+
+methods: see Deque-methods
+
+21.2.4. COMPARISON OF COLLECTION-IMPLEMENTATIONS
+
+		Unique |Ordened |Sorted |Random Access
+HashSet		   X	   O	   O		O
+LinkedHashSet	   X	   X	   O		O
+TreeSet		   X	   X	   X		O
+LinkedList	   O	   X	   O		O
+ArrayList	   O	   X	   O		X
+PriorityQue	   O	   X	   X		O
+Duque		   O	   X	   O		O
 
 
 
