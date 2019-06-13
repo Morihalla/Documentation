@@ -1085,8 +1085,38 @@ LinkedList	   O	   X	   O		O
 ArrayList	   O	   X	   O		X
 PriorityQue	   O	   X	   X		O
 Duque		   O	   X	   O		O
+___________________________
+21.2.5. Sorting collections
+---------------------------
+____________________________
+21.2.5.1. intrinsic sorting
+----------------------------
+Sorting by collection-methods (like SortedSet, Treeset, PriorityQueue, ...)
 
+Types of sorting:
+
+1) Natural order by implementing the Comparable<T> interface.
+method:
+public int compareTo (T o)
+-> gives negative value when the element is lower then the given element
+-> gives positive value when the element is higher then the given element
+
+2) Comparator sorting determined by comparator implemented by constructor
+! Do not implement Comparable interface !
+-> the constructor implements the Comparator-interface
+
+method:
+public int compare (T object, T object2)
+-> can be used if the object to compare don't hava a natural order
+-> can be used if another order is desirable
+
+-sorting collections only accept element that implements
+the needed interface, if not an exception will be thrown-
+
+-> Comparator also has a method .thenComparing() for further comparison
+
+-> in a TreeSet duplicates will throw a value of 0
 
 
 sources :
-Java 11 Fundamentals - Noël Vaes
+Java 11 Fundamentals - NoÃ«l Vaes
