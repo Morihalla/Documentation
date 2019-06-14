@@ -9,7 +9,7 @@ System.out.print("tekst")
 \n => new line
 \r => return
 
-println => output + ENTER
+println => Output + ENTER
 
 \t => tab
 \" => " (quotes)
@@ -29,12 +29,14 @@ import java.util.Scanner;
 Scanner keyboard = new Scanner (System.in)
 -keyboard = free to choose-
 
-var x = keyboard.nextvar();
+var x = keyboard.nextVar();
 
 -var = free to choose variable-
 -x = free to choose variableName-
 -keyboard = free to choose-
--var = replace by free to choose variable(same as var)-
+-Var = replace by free to choose variable(same as var)-
+
+keyboard.nextLine(); => empties the last given input
 
 ____________
 3. VARIABLES
@@ -46,8 +48,9 @@ ________________________
 Integers: (byte, short),int, long
 Floating point: float, double
 Characters: char
-Text: String
 Booleans (false/true): boolean
+
+Text: String
 _______________
 3.3. PROPERTIES
 ---------------
@@ -62,12 +65,19 @@ Static		-> ClassVariable not InstanceVariable
 Final		-> Constant, can't be changed
 type		-> Primitive datatype or ReferenceType (Object)
 initValue	-> Initial value of variable
+____________
+3.4. CASTING
+------------
+
+var name = (varToCastTo) newname;
+
 
 ____________
 4. OPERATORS
 ------------
 
 +-*/=
+
 % 	-> rest of division
 
 ++	-> +1
@@ -131,6 +141,20 @@ statements;
 -if = see IF-Statements-
 -else-statement(s) = to do when condition is false-
 
+
+! SWITCH-STATEMENT = Predetermined if-else statement !
+=> (this condition = this statement)
+
+switch (variableName) {
+case 1: otherVariableName = value; break;
+case 2: idem
+etc ...
+-break = optional-
+
+! final variables !
+=> can never be changed
+=> names in caps
+
 _______
 6.LOOPS
 -------
@@ -169,18 +193,6 @@ for (initialisation;condition;in.decrement){
 4) increment or decrement
 5) checking condition again
 
-! SWITCH-STATEMENT = Predetermined if-else statement !
-=> (this condition = this statement)
-
-switch (variableName) {
-case 1: otherVariableName = value; break;
-case 2: idem
-etc ...
--break = optional-
-
-! final variables !
-=> can never be changed
-=> names in caps
 _________________
 6.4. FOREACH-LOOP
 -----------------
@@ -252,8 +264,7 @@ _______________________
 7.2. METHOD OVERLOADING
 -----------------------
 
-Methods can have the same name, the method will be chosen 
-by choice of given params.
+Methods can have the same name, the method will be chosen by choice of given params.
 
 -> calling methods: ClassName.method();
 ___________________
@@ -332,6 +343,12 @@ _________
 
 dataType [] arrayName = new dataType [length] {parameters};
 -{parameters} = optional-
+
+other way to fill up the array:
+instead of {parameters}
+{
+arrayName [index] = value
+etc...
 _______________________________
 9.Bis. MULTI-DIMENSIONAL ARRAYS
 -------------------------------
@@ -1251,3 +1268,4 @@ TreeMap		   X	   X	   X
 
 sources :
 Java 11 Fundamentals - Noël Vaes
+Apprenez à programmer en Java - Cyrille Herby (Open Classrooms)
