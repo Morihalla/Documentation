@@ -1317,6 +1317,13 @@ used to:
 - Copy files
 - Delete files
 
+___________________
+22.1.4. FILE-CLASS
+-------------------
+
+Paths can be turned into files (path.toFile())
+Or files into paths (File.toPath())
+
 sources :
 Java 11 Fundamentals - Noël Vaes
 Apprenez à programmer en Java - Cyrille Herby (Open Classrooms)
