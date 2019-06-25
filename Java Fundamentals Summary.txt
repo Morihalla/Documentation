@@ -1265,6 +1265,57 @@ HashMap		   X	   O	   O
 LinkedHashMap	   X	   X	   O	
 TreeMap		   X	   X	   X	
 
+______________________
+22. I/O (Input/Output)
+----------------------
+___________________________
+22.1. FOLDERS AND DOCUMENTS
+---------------------------
+______________________
+22.1.1. PATH-INTERFACE
+----------------------
+
+Use of relative paths leave out the root-folder
+. 	= this map
+.. 	= parent
+
+_______________
+22.1.1.1. LINUX
+---------------
+
+- 1 root-folder
+- seperator = /
+- root = '/'
+_________________
+22.1.1.2. WINDOWS
+-----------------
+
+- multiple roots
+- seperator = \
+- root ex. = 'C:\'
+
+_________________________
+22.1.2. FILESSYSTEM-CLASS
+-------------------------
+
+String getSeparator()	-> gives the uses separator for the current FileSystem
+Iterable<Path>		-> gives the collecion of basi folders of the FileSystem
+getRootDirectories()
+
+___________________
+22.1.3. FILES-CLASS
+-------------------
+
+Where Path gives the location, Files actually uses the files themselves.
+
+used to:
+- Create folders
+- Create files
+- Write text to files
+- Ask attributes of a file
+- Read text from files
+- Copy files
+- Delete files
 
 sources :
 Java 11 Fundamentals - Noël Vaes
