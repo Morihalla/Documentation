@@ -1438,9 +1438,28 @@ CharArrayReader		= Read data from array.
 ________________________________
 22.2.2. USE OF CHARACTER-STREAMS
 --------------------------------
+
+To avoid streams to stay open use of "try with resources" is recommended.
+=
+try (CharacterStream cs = new CharacterStream ("name.ext")) {
+cs.method();
+} catch (IOException ioe) {
+}
 ____________________________
 22.2.2.1. WRITE TEXT TO FILE
 ----------------------------
+
+Create FileWriter and give a name in the constructor.
+
+Write to document => write()
+(this method can generate IOException, so an exception-handling
+should be provided.)
+
+Close the stream => close()
+(in the finally-block, to be sure it closes at the end)
+(can throw an exception as well, so new catch or "try with resources")
+
+
 _____________________________
 22.2.2.2. READ TEXT FROM FILE
 -----------------------------
