@@ -1324,6 +1324,127 @@ ___________________
 Paths can be turned into files (path.toFile())
 Or files into paths (File.toPath())
 
+_______________
+22.2 IO-STREAMS
+---------------
+
+Bron 	-> ReadStream	-> Program
+Program	-> WriteStream	-> Destination
+
+Possible input-sources:
+- files
+- pipes
+- keyboard
+- networks
+- memorybuffers
+
+Possible ouput-destinations:
+- files
+- pipes
+- networks
+- memorybuffers
+
+Steps to write to a stream:
+1) Open stream
+2) Write to stream
+3) Close stream
+
+Steps to read a stream:
+1) Open stream
+2) Read stream
+3) Close stream
+
+IO-streams are objects from determined classes.
+
+There are 2 kinds of streams by content:
+- Character streams = 16-bits streams for e.g. text
+- Byte streams = 8-bits streams for e.g. binary data
+
+There are 2 kinds of streams by use:
+- Data sink streams = used for reading and writing IO
+- Processing streams = used for processing IO
+
+Program <-> Processing Stream <-> Data Sink Stream <-> Destination
+
+_________________________
+22.2.1. CHARACTER-STREAMS
+-------------------------
+
+Abstract superclasses
+- Writer Abstract
+- Reader Abstract
+
+_______________________
+22.2.1.1. WRITERSTREAMS
+-----------------------
+
+Processing WriterStreams
+- BufferedWriter
+- FilterWriter
+- PrintWriter
+- OutputStreamWriter
+
+DataSink WriterStreams
+- PipedWriter
+- StringWriter
+
+	- FileWriter (extends OutputStreamWriter)
+_______________________
+22.2.1.2. READERSTREAMS
+-----------------------
+
+Processing ReaderStreams
+- BufferedReader
+	- LineNumberReader
+- FilterReader
+	- PushBackReader
+- InputStreamReader
+
+DataSink ReaderStreams
+- CharArrayReader
+- PipedReader
+- StringReader
+
+	- FileReader (extends InputStreamReader)
+
+__________________________
+22.2.1.3. SUBCLASS-SUMMARY
+--------------------------
+BufferedWriter		= Data is buffered. can read or write bigger blocks
+BufferedReader		  of data from documents, and thus faster.
+
+LineNumberReader	= Can read lines from a stream by buffering.
+
+FilterWriter		= Abstract classes for making personal processing streams.
+FilterReader		  Subclasses replace methods for data-processing.
+
+PushbackReader		= Data are read and put back in stream. Used to peek data.
+
+PrintWriter		= Extra methods to write primitive dataTypes in textform.
+
+InputStreamReader	= Link between character- and bytestreams. Makes conversion
+OutputStreamWriter	  between bytes and characters. Possibility for encoding.
+
+FileWriter		= Write and read text from and to documents.
+FileReader		  Do conversion between bytes and characters.
+
+PipedWriter 		= Read and write from and to pipes.
+PipedReader		  Pipes are used as a channel between threads.
+
+StringWriter		= Read and write from and to Strings.
+StringReader		  
+
+CharArrayReader		= Read data from array.
+________________________________
+22.2.2. USE OF CHARACTER-STREAMS
+--------------------------------
+____________________________
+22.2.2.1. WRITE TEXT TO FILE
+----------------------------
+_____________________________
+22.2.2.2. READ TEXT FROM FILE
+-----------------------------
+
 sources :
 Java 11 Fundamentals - Noël Vaes
 Apprenez à programmer en Java - Cyrille Herby (Open Classrooms)
