@@ -1,0 +1,184 @@
+Structured Query Language (SDL)
+-------------------------------
+
+DataBase Management System (DBMS)
+---------------------------------
+Functies:
+- Data definitie
+- Data retrieval
+- Data manipulation
+- Administration
+
+ACID - principals
+-----------------
+Atomicity
+Consistency
+Isolation
+Durability
+
+Verschillende soorten DBMS's
+----------------------------
+Relationeel DBMS: gegevens en relaties
+Hierarchisch DBMS: parent-child verhouding
+Network DBMS: Relationeel met meer opties voor relaties
+Object Oriented DBMS: voor verschillende media-types
+Document Oriented DBMS: semi-structured, sneller maar minder consistent
+
+Relational DataBase Management Systems (RDBMS)
+----------------------------------------------
+TABLES
+	Colums
+Rows
+
+- Related tables
+- Primary key (PK)
+- Foreign keys (FK)
+- Relations
+- Indexation
+- Querries
+- Normalization
+
+RDBMS	OOP
+Table	Class
+Column	Property
+Record	Class-instance
+Key	Memory reference
+
+Different types of SQL
+----------------------
+Data Manipulation Language (DML)
+Data Definition Language (DDL)
+Data Control Language (DCL) and Transaction Control Language (TCL)
+
+Data Manipulation Language (DML)
+--------------------------------
+Select, add, change, delete data
+
+SELECT
+INSERT
+UPDATE
+DELETE
+
+=> Create Read Update Delete (CRUD)
+
+Data Definition Language (DDL)
+------------------------------
+Creation and maintenance of DB's
+
+CREATE
+DROP
+ALTER
+
+Data Control Language (DCL)
+---------------------------
+Security of data
+
+Transaction Control Language (TCL)
+----------------------------------
+Transactions within the server
+
+
+
+DML - Data Manipulation
+-----------------------
+SELECT ... FROM ...
+
+SELECT => followed by the column(s) to show
+FROM => followed by the table to use
+WHERE => followed by condition (like a statement)
+
+SELECT
+------
+ALL (default)
+DISTINCT (no double records)
+TOP (not all DBMS's support)
+
+* = Wildcard
+
+FROM
+----
+Table to use
+
+INNER JOIN ... ON ...
+
+INNER JOIN => Combine records of 2 tables
+ON => Joining condition
+
+also ... OUTER JOIN
+LEFT/RIGHT JOIN
+
+UNION => Combine independant tables or query's
+
+WHERE
+-----
+Results of WHERE-clause should always be booleans
+
+LIKE => Check if a part of data is present
+(% = wildcard)
+
+BETWEEN => To get a value in between 2 values
+AND => Add condition
+OR => Check 1 of several conditions true
+NOT => Check if none of the conditions is true
+IN => Check if data is present
+
+IS (NOT) NULL => Check if data is (not) null
+
+
+INSERT
+------
+Enter records
+
+INSERT INTO => Select place to enter
+VALUES => Value(s) to add
+
+
+UPDATE
+------
+Change data from records
+
+UPDATE => Table to use
+SET => Enter column and new data
+WHERE => condition
+
+DELETE
+------
+DELETE FROM => Table to use
+WHERE => Condition
+
+
+GENERALS
+--------
+!UPDATE and DELETE => Always WHERE-clause!
+
+GROUP BY => followed by column(s) to group by
+HAVING => followed by condition
+ORDER BY => follewed by column(s) to order by
+(ASC, DESC to order by ascending or descending)
+LIMIT => Maximum records to show
+OFFSET => Starpoint of LIMIT
+
+GROUP BY
+--------
+HAVING => Grouping condition (e.g. AVG, MAX, MIN, COUNT)
+
+
+LIMIT ... OFFSET ...
+--------------------
+LIMIT (int => number of records to show)
+OFFSET (int => number of records to ignore before limit)
+
+LIMIT (int offset, int limit)
+
+AS
+--
+Alias for a table (optional)
+
+SUBQUERIES
+----------
+Querry within a condition
+e.g. Q1 = SELECT ... FROM ... WHERE (Q2)
+
+DESCRIBE
+--------
+DESCRIBE table => Get column headers
