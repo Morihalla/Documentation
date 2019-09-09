@@ -1,0 +1,90 @@
+Java DataBase Connectivity
+--------------------------
+
+
+1. Connecting to a DataBase
+---------------------------
+
+1.1. Loading DataBase-Driver
+----------------------------
+
+Register driver ...
+-> DriverManager.registerDriver();
+
+
+or load driver
+->Class.forName();
+
+
+ask list of registerd drivers
+-> DriverManager.getDrivers();
+-> DriverManager.driver();
+
+1.2. Making Connection
+----------------------
+
+DriverManager.getConnection(url,login,password)
+
+url -> jdbc:subprotocol:subname
+	->subprotocol = driver
+
+1.3. SQL-Commands
+-----------------
+
+1.3.1. Create statements
+------------------------
+
+Statement statement = connection.createStatement()
+
+statement-methods:
+- executeUpdate (String sql)	: gives lines changed (update-counter)
+- executeQuery (String sql)	: gives ResultSet
+- executeBatch() 		: gives multiple integer results
+- execute()			: gives boolean for y/n ResultSet
+
+
+1.3.2. Prepared statements
+--------------------------
+
+PreparedStatement statement = connection.prepareStatement(sql) {
+	statement.executeQuery ();
+}
+
+
+
+1.4. Transactions
+-----------------
+
+try (Connection connection = DriverManager.getConnection("url","user","password")){
+	try (Statement statement = connection.createstatement()) {
+		connection.setAutoCommit (false);
+		statement.executeUpdate (sql);
+		connection.commit();
+	} catch (Exception e) {
+		connection rollback();
+	}
+}
+
+
+1.5. Batch-updates
+------------------
+
+(only for update counters)
+
+try (Connection connection = DriverManager.getconnectio ("URL","user","password"));
+
+Statement statement = connection.createStatement() {
+
+String cmd;
+cmd = "sql"
+statement.addBatch(cmd);
+
+statement.executeBatch();
+connection.commit();
+connection.setAutoCommit(true);
+
+
+1.6. MetaData
+-------------
+
+Gives the general information about the ResultSet, DataBase-version and supported drivers.
